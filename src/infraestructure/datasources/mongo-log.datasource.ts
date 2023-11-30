@@ -1,4 +1,4 @@
-import { LogModel } from "../../data/mongo";
+/*import { LogModel } from "../../data/mongo";
 import { LogDataSource } from "../../domain/datasources/log.datasource";
 import { LogEntity, LogSeverityLevel } from "../../domain/entities/log.entity";
 
@@ -15,4 +15,4 @@ export class MongoLogDatasource implements LogDataSource{
         return logs.map(mongolog => LogEntity.fromObject(mongolog))
     }
     
-}
+}*/

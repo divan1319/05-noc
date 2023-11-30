@@ -1,5 +1,6 @@
 import { LogEntity, LogSeverityLevel } from "../../entities/log.entity";
 import { LogRepository } from "../../repositories/log.repository";
+import {HttpClient} from "../../../config/http/http-config"
 
 interface ICheckService {
     execute(url: string): Promise<boolean>;
@@ -21,8 +22,8 @@ export class CheckService implements ICheckService {
     
     public async execute(url: string): Promise<boolean> {
         try {
-            const req = await fetch(url)
-            if (!req.ok) throw new Error(`Error check ${url}`)
+            const req = await HttpClient.get(url)
+            if (!req.status) throw new Error(`Error check ${url}`)
             const data = {
                 message: `Service ${url} working`,
                 level: LogSeverityLevel.low,
