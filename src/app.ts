@@ -1,3 +1,4 @@
+import { PrismaClient } from "@prisma/client"
 import { envs } from "./config/plugins/env.plugin"
 import { MongoDatabase } from "./data/mongo"
 import { Server } from "./presentation/server"
@@ -10,11 +11,28 @@ import { Server } from "./presentation/server"
 
 async function main(){
 
-    await MongoDatabase.connect({
+    Server.start()
+    /*
+    const prisma = new PrismaClient()
+        await MongoDatabase.connect({
         mongoUrl:envs.MONGO_URL,
         dbName:envs.MONGO_DB
     })
-
+    
+    
+    const newLog = await prisma.logModel.create({
+        data:{
+            level:'MEDIUM',
+            message:'test message con psgt',
+            origin:'App.ts'
+        }
+    })*/
+    /*const logs = await prisma.logModel.findMany({
+        where:{
+            level:'MEDIUM'
+        }*/
+    //})
+    //console.log(logs)
     //grabar en mongo
     /*
     const newLog = await LogModel.create({
@@ -27,6 +45,5 @@ async function main(){
 
     console.log(newLog)
     */
-    Server.start()
     //console.log(envs.PORT)
 }
